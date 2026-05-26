@@ -168,7 +168,7 @@ def load_ai_models():
         mask_model = load_model('robust_mask_detector.h5', compile=False) 
     except Exception as e:
         mask_model = None
-        st.error("Mask model error. Is robust_mask_detector.h5 in the folder?")
+        st.error(f"Actual model loading error: {e}")
     
     base_options = python.BaseOptions(model_asset_path=model_path)
     options = vision.FaceDetectorOptions(base_options=base_options, min_detection_confidence=0.7)
