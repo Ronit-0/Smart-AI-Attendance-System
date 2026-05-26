@@ -2,7 +2,6 @@ streamlit
 opencv-python-headless
 numpy
 pandas
-tensorflow
-tf-keras
+tensorflow==2.15.0
 mediapipe
 deepface
