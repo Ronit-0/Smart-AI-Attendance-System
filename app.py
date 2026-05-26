@@ -367,7 +367,7 @@ elif choice == "🔴 Live Attendance":
                             identity_name = "Unknown"
                             
                             if face_crop.size != 0:
-                                if  is not None:
+                                if mask_model is not None:
                                     rgb_face = cv2.cvtColor(face_crop, cv2.COLOR_BGR2RGB)
                                     resized_face = cv2.resize(rgb_face, (224, 224))
                                     img_array = np.expand_dims(resized_face, axis=0)
