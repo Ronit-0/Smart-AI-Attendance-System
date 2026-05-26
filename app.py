@@ -162,13 +162,25 @@ if not os.path.exists(model_path):
     st.info("Downloading MediaPipe Face Detection model...")
     urllib.request.urlretrieve("https://storage.googleapis.com/mediapipe-models/face_detector/blaze_face_short_range/float16/1/blaze_face_short_range.tflite", model_path)
 
-@st.cache_resource 
+import zipfile
+import os
+
+@st.cache_resource
 def load_ai_models():
+
+    # Extract model if not already extracted
+    if not os.path.exists("robust_mask_detector.h5"):
+        with zipfile.ZipFile("robust_mask_detector.zip", "r") as zip_ref:
+            zip_ref.extractall(".")
+
     try:
-        mask_model = load_model('robust_mask_detector.h5', compile=False) 
+        mask_model = load_model("robust_mask_detector.h5", compile=False)
+
     except Exception as e:
         mask_model = None
         st.error(f"Actual model loading error: {e}")
+
+    return mask_model
     
     base_options = python.BaseOptions(model_asset_path=model_path)
     options = vision.FaceDetectorOptions(base_options=base_options, min_detection_confidence=0.7)
