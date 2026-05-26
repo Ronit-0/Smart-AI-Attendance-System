@@ -3,8 +3,8 @@ os.environ["TF_USE_LEGACY_KERAS"] = "1"
 import streamlit as st
 import cv2
 import numpy as np
-from tensorflow.keras.models import load_model
-from tensorflow.keras.applications.mobilenet_v2 import preprocess_input
+from tf_keras.models import load_model
+from tf_keras.applications.mobilenet_v2 import preprocess_input
 from datetime import datetime
 import pandas as pd
 import urllib.request
