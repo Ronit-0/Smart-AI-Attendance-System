@@ -1,9 +1,8 @@
 import os
-os.environ["TF_USE_LEGACY_KERAS"] = "1"
 import streamlit as st
 import cv2
 import numpy as np
-from tensorflow.keras.models import load_model
+from keras.models import load_model
 from tensorflow.keras.applications.mobilenet_v2 import preprocess_input
 from datetime import datetime
 import pandas as pd
@@ -174,8 +173,10 @@ def load_ai_models():
             zip_ref.extractall(".")
 
     try:
-        mask_model = load_model("robust_mask_detector.h5", compile=False)
-
+        mask_model = load_model(
+    "robust_mask_detector.h5",
+    compile=False
+)
     except Exception as e:
         mask_model = None
         st.error(f"Actual model loading error: {e}")
@@ -369,7 +370,7 @@ elif choice == "🔴 Live Attendance":
                             identity_name = "Unknown"
                             
                             if face_crop.size != 0:
-                                if mask_model is not None:
+                                if  is not None:
                                     rgb_face = cv2.cvtColor(face_crop, cv2.COLOR_BGR2RGB)
                                     resized_face = cv2.resize(rgb_face, (224, 224))
                                     img_array = np.expand_dims(resized_face, axis=0)
